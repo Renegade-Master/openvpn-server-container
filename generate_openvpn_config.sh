@@ -11,18 +11,10 @@ name="openvpn-gen-config"
 common_name="test.renegade-master.com"
 
 # Initialize the $OVPN_DATA container that will hold the configuration
-# files and certificates. The container will prompt for a passphrase to
-# protect the private key used by the newly generated certificate authority.
+# files and certificates.
 podman --storage-opt ignore_chown_errors=true run --rm \
     --name "${name}" \
     --env DEBUG=1 \
     --volume "${data_dir}":"/etc/openvpn":z \
     "${image}" \
         ovpn_genconfig -u "udp://${common_name}"
-
-podman run --rm \
-    --name "${name}" \
-    --env DEBUG=1 \
-    --volume "${data_dir}":"/etc/openvpn":z \
-    "${image}" \
-        ovpn_initpki

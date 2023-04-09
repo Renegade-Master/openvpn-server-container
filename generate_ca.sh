@@ -10,8 +10,7 @@ name="openvpn-ca"
 
 common_name="test.renegade-master.com"
 
-# Initialize the $OVPN_DATA container that will hold the configuration
-# files and certificates. The container will prompt for a passphrase to
+# The container will prompt for a passphrase to
 # protect the private key used by the newly generated certificate authority.
 podman --storage-opt ignore_chown_errors=true run --rm \
     --name "${name}" \
