@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
-set +x -eu -o pipefail
+set +x -e -o pipefail
 
-openvpn_image="docker.io/kylemanna/openvpn"
-openvpn_version="2.4"
-image="${openvpn_image}:${openvpn_version}"
-
-data_dir="$(pwd)/data/"
+source "$(pwd)/common.sh"
 name="openvpn-cert"
+
+if [[ -z "$1" ]]; then
+    fail_with_error "No Client name supplied"
+fi
 
 client_name="$1"
 
@@ -22,4 +22,11 @@ podman run --rm \
     --name openvpn \
     --volume "${data_dir}":"/etc/openvpn":z \
     "${image}" \
-        ovpn_getclient "${client_name}" > "${client_name}.ovpn"
+        ovpn_getclient "${client_name}" > "${clients_dir}/${client_name}.ovpn"
+
+# Retrieve the client OPT information
+podman run --rm \
+    --name openvpn \
+    --volume "${data_dir}":"/etc/openvpn":z \
+    "${image}" \
+        ovpn_otp_user ${client_name}

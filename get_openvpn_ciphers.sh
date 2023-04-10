@@ -4,9 +4,10 @@ set +x -eu -o pipefail
 source "$(pwd)/common.sh"
 name="openvpn-client-info"
 
-# List all Clients and CRL
+# List all Clients information
 podman run --rm -it \
     --name "${name}" \
     --volume "${data_dir}":"/etc/openvpn":z \
+    --volume "${clients_dir}":"/etc/openvpn/clients":z \
     "${image}" \
-        ovpn_listclients
+        openvpn --show-ciphers

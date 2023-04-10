@@ -1,20 +1,24 @@
 #!/usr/bin/env bash
-set -x -eu -o pipefail
+set +x -e -o pipefail
 
-openvpn_image="docker.io/kylemanna/openvpn"
-openvpn_version="2.4"
-image="${openvpn_image}:${openvpn_version}"
-
-data_dir="$(pwd)/data/"
+source "$(pwd)/common.sh"
 name="openvpn-gen-config"
+cipher="AES-256-GCM"
 
-common_name="test.renegade-master.com"
+if [[ -z "$1" ]] || [[ "$1" == "" ]]; then
+    fail_with_error "No Common Name supplied"
+fi
+
+common_name="$1"
 
 # Initialize the $OVPN_DATA container that will hold the configuration
 # files and certificates.
 podman --storage-opt ignore_chown_errors=true run --rm \
     --name "${name}" \
-    --env DEBUG=1 \
+    --env DEBUG=0 \
     --volume "${data_dir}":"/etc/openvpn":z \
     "${image}" \
-        ovpn_genconfig -u "udp://${common_name}"
+        ovpn_genconfig \
+            -u "udp://${common_name}" \
+            -2 \
+            -C "${cipher}"
