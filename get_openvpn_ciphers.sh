@@ -2,9 +2,9 @@
 set +x -eu -o pipefail
 
 source "$(pwd)/common.sh"
-name="openvpn-client-info"
+name="openvpn-info"
 
-# List all Clients information
+# List all valid ciphers
 podman run --rm -it \
     --name "${name}" \
     --volume "${data_dir}":"/etc/openvpn":z \
