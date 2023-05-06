@@ -9,6 +9,7 @@
 
 Run the scripts in the following order:
 
+0. clean.sh
 1. generate_openvpn_config.sh <common_name>
 2. generate_ca.sh
 3. generate_new_client.sh <client_name>
