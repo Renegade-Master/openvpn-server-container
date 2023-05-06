@@ -3,6 +3,7 @@
 ## References
 
 * [kylemanna/docker-openvpn](https://github.com/kylemanna/docker-openvpn)
+* [kylemanna/docker-openvpn](https://github.com/nuBacuk/docker-openvpn)
 
 ## How to Use
 
@@ -22,7 +23,7 @@ Some of the following commands may need to be executed on the Host:
     iptables v1.8.4 (legacy): can't initialize iptables table `nat': Table does not exist (do you need to insmod?)
     Perhaps iptables or your kernel needs to be upgraded.
     ```
-    run the following:
+  run the following:
     ```sh
     sudo modprobe ip_tables
     echo 'ip_tables' | sudo tee -a /etc/modules
