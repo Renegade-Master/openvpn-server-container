@@ -7,6 +7,7 @@ name="openvpn-server"
 # Start OpenVPN server process
 podman run --rm \
     --name "${name}" \
+    --env DEBUG=${DEBUG} \
     --publish 1194:1194/udp \
     --volume "${data_dir}":"/etc/openvpn":z \
     --cap-add=NET_ADMIN \

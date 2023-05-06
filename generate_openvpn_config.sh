@@ -1,6 +1,11 @@
 #!/usr/bin/env bash
 set +x -e -o pipefail
 
+#######################################################################
+# Note: For all configuration options, see:
+#  https://github.com/kylemanna/docker-openvpn/blob/master/bin/ovpn_genconfig
+#######################################################################
+
 source "$(pwd)/common.sh"
 name="openvpn-gen-config"
 cipher="AES-256-GCM"
@@ -18,12 +23,13 @@ print_msg "Using Cipher: [${cipher}]"
 # files and certificates.
 podman --storage-opt ignore_chown_errors=true run --rm \
     --name "${name}" \
-    --env DEBUG=0 \
+    --env DEBUG=${DEBUG} \
     --volume "${data_dir}":"/etc/openvpn":z \
     "${image}" \
         ovpn_genconfig \
+            -u "udp://${common_name}" \
+            -2 \
             -b \
             -c \
-            -D \
-            -u "udp://${common_name}" \
-            -C "${cipher}"
+            -C "${cipher}" \
+            -D

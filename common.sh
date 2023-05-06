@@ -1,6 +1,12 @@
 #!/usr/bin/env bash
 set +x -e -o pipefail
 
+DEBUG=0
+
+if [[ "$DEBUG" == "1" ]]; then
+    set -x
+fi
+
 print_msg() {
     currdate="$(date +%Y-%m-%dT%H:%M:%SZ)"
 

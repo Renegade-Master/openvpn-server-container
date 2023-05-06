@@ -8,7 +8,7 @@ name="openvpn-ca"
 # protect the private key used by the newly generated certificate authority.
 podman run --rm -it \
     --name "${name}" \
-    --env DEBUG=0 \
+    --env DEBUG=${DEBUG} \
     --volume "${data_dir}":"/etc/openvpn":z \
     "${image}" \
         ovpn_initpki
