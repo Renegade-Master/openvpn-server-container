@@ -33,7 +33,7 @@ fi
 openvpn_image="docker.io/nubacuk/docker-openvpn"
 image="${openvpn_image}:${openvpn_version}"
 
-work_dir="$(pwd)/data"
+work_dir="$(dirname $0)/data"
 data_dir="${work_dir}/openvpn/"
 clients_dir="${work_dir}/clients/"
 
