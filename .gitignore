@@ -1,3 +1,4 @@
 data/*
+.bak/
 .idea/
 start_times.txt

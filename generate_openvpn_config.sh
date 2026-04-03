@@ -8,7 +8,7 @@ set +x -e -o pipefail
 
 source "$(pwd)/common.sh"
 name="openvpn-gen-config"
-cipher="AES-256-GCM"
+cipher="CHACHA20-POLY1305"
 
 if [[ -z "$1" ]] || [[ "$1" == "" ]]; then
     fail_with_error "No Common Name supplied"
@@ -32,4 +32,5 @@ podman --storage-opt ignore_chown_errors=true run --rm \
             -b \
             -c \
             -C "${cipher}" \
+            -T "${cipher}" \
             -D

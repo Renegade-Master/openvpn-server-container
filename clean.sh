@@ -3,9 +3,9 @@ set +x -eu -o pipefail
 
 source "$(pwd)/common.sh"
 
-print_msg "Removing [data] folder..."
-rm -rf $(pwd)/data
-print_msg "[data] folder removed."
+print_msg "Moving [data] folder..."
+mv $(pwd)/data $(pwd)/.bak/data-$(date +%Y%m%dT%H%M%SZ) || true
+print_msg "[data] folder moved."
 
 print_msg "Creating [data] folder..."
 mkdir -p $(pwd)/data/openvpn $(pwd)/data/clients
