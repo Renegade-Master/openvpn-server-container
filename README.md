@@ -3,7 +3,7 @@
 ## References
 
 * [kylemanna/docker-openvpn](https://github.com/kylemanna/docker-openvpn)
-* [kylemanna/docker-openvpn](https://github.com/nuBacuk/docker-openvpn)
+* [nuBacuk/docker-openvpn](https://github.com/nuBacuk/docker-openvpn)
 
 ## How to Use
 

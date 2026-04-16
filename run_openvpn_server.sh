@@ -15,4 +15,3 @@ podman run \
     --cap-add=NET_ADMIN \
     --privileged \
     "${image}"
-
